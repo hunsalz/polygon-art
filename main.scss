@@ -1,0 +1,214 @@
+/* mixins starts here */
+
+@mixin frame2($width: 80vw, $height: 80vh, $margin-width: 10vw, $margin-height: 10vh) {
+    background: #ddc;
+    border: solid 5vmin #eee;
+    border-bottom-color: #fff;
+    border-left-color: #eee;
+    border-radius: 2px;
+    border-right-color: #eee;
+    border-top-color: #ddd;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25) inset, 0 5px 10px 5px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80vw;
+    height: 80vh;
+    padding: 8vmin;
+    margin: $margin-height $margin-width;
+    position: relative;
+    text-align: center;
+    &:before {
+        border-radius: 2px;
+        bottom: -2vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
+        content: "";
+        left: -2vmin;
+        position: absolute;
+        right: -2vmin;
+        top: -2vmin;
+    }
+    &:after {
+        border-radius: 2px;
+        bottom: -2.5vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+        content: "";
+        left: -2.5vmin;
+        position: absolute;
+        right: -2.5vmin;
+        top: -2.5vmin;
+    }
+}
+
+@mixin mountain($width, $height, $color, $rotate: 45deg) {
+    width: $width;
+    height: $height;
+    transform: rotate($rotate);
+    background: $color;
+}
+
+@mixin trapezoid($width, $height, $left, $right, $color, $rotate: 0deg) {
+    border-bottom: $height solid $color;
+    border-left: $left solid transparent;
+    border-right: $right solid transparent;
+    height: 0;
+    width: $width;
+    transform: rotate($rotate);
+}
+
+@mixin moon($width, $height, $diameter, $color) {
+    width: $width;
+    height: $height;
+    border-radius: 50%;
+    box-shadow: $diameter $diameter 0 0 $color;
+}
+
+@mixin circle($diameter, $color) {
+    width: $diameter;
+    height: $diameter;
+    border-radius: 100%;
+    background: $color;
+    box-shadow: 0px 0px 20px 1px $color;
+}
+
+@mixin position($top: 0, $left: 0, $bottom: 0, $right: 0) {
+    position: relative;
+    top: $top;
+    left: $left;
+    bottom: $bottom;
+    right: $right;
+}
+
+/* mixins end here */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    background: rgb(205, 205, 206);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 62.5%;
+}
+
+.frame {
+    background: #ddc;
+    border: solid 5vmin #eee;
+    border-bottom-color: #fff;
+    border-left-color: #eee;
+    border-radius: 2px;
+    border-right-color: #eee;
+    border-top-color: #ddd;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.25) inset, 0 5px 10px 5px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    display: inline-block;
+    width: 80vw;
+    height: 80vh;
+    padding: 8vmin;
+    margin: 10vh 10vw;
+    position: relative;
+    text-align: center;
+    &:before {
+        border-radius: 2px;
+        bottom: -2vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25) inset;
+        content: "";
+        left: -2vmin;
+        position: absolute;
+        right: -2vmin;
+        top: -2vmin;
+    }
+    &:after {
+        border-radius: 2px;
+        bottom: -2.5vmin;
+        box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+        content: "";
+        left: -2.5vmin;
+        position: absolute;
+        right: -2.5vmin;
+        top: -2.5vmin;
+    }
+}
+
+.sky {
+    height: 40%;
+    background: linear-gradient(#80a7dd, #dbd1d4);
+}
+
+.moon {
+    @include moon(3rem, 3rem, 0.7rem, rgba(255, 255, 255, 0.596));
+    @include position(20%, 20%);
+}
+
+.star-1 {
+    @include circle(0.3rem, rgba(255, 255, 255, 0.596));
+    @include position(10%, 40%);
+}
+
+.star-2 {
+    @include circle(0.3rem, rgba(255, 255, 255, 0.596));
+    @include position(35%, 5%);
+}
+
+.star-3 {
+    @include circle(0.3rem, rgba(255, 255, 255, 0.596));
+    @include position(5%, 80%);
+}
+
+.star-4 {
+    @include circle(0.3rem, rgba(255, 255, 255, 0.596));
+    @include position(10%, 65%);
+}
+
+.star-5 {
+    @include circle(0.5rem, rgba(255, 255, 255, 0.596));
+    @include position(15%, 55%);
+}
+
+.landscape {
+    height: 60%;
+    background: green;
+}
+
+.mountain-0 {
+    @include trapezoid(20vw, 30vh, 5vw, 5vw, red, 0deg);
+    @include position(-20%, 30%);
+}
+
+.mountain-1 {
+    @include mountain(12rem, 30rem, #41354e, -65deg);
+    position: absolute;
+    bottom: -15rem;
+    left: -2rem;
+    z-index: 10;
+}
+
+.mountain-2 {
+    @include mountain(25rem, 20rem, #2d556a, -20deg);
+    position: absolute;
+    bottom: -10rem;
+    right: -5rem;
+    z-index: 9;
+}
+
+.mountain-3 {
+    @include mountain(30rem, 30rem, #6f8695, -45deg);
+    z-index: 8;
+    position: absolute;
+    left: -5rem;
+    bottom: -18rem;
+}
+
+.mountain-4 {
+    @include mountain(30rem, 30rem, #adb1b9, -45deg);
+    z-index: 7;
+    position: absolute;
+    left: -13rem;
+    bottom: -20rem;
+}
